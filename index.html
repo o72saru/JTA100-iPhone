@@ -1,0 +1,89 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JTA100 ロット計算</title><meta name="theme-color" content="#0a1220"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="JTA100"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icon-180.png">
+<style>:root{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#0a1220;color:#edf4ff;padding:18px}main{max-width:1060px;margin:auto}h1{font-size:25px;margin:0 0 6px}h2{font-size:17px;margin:0 0 14px}.sub{color:#a6bad2;line-height:1.6;margin:0 0 17px}.card{background:#13243a;border:1px solid #2b435f;border-radius:15px;padding:20px;margin:13px 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}label{font-size:13px;color:#bed0e3;display:block;margin-bottom:6px}input,select{width:100%;background:#091625;color:#fff;border:1px solid #49607a;border-radius:8px;padding:11px;font-size:17px}button{background:#167f75;color:white;border:1px solid #2ab7a4;border-radius:9px;padding:10px 15px;font-weight:700;cursor:pointer}button.secondary{background:#253a55;border-color:#4e6985}button.danger{background:#4b2937;border-color:#825267}button:disabled{opacity:.5;cursor:not-allowed}.big{font-size:clamp(45px,8vw,72px);font-weight:800;color:#66e3c4;line-height:1.1}.result{padding:19px;background:#0b1b2d;border-radius:12px;text-align:center}.small{font-size:12px;color:#9fb2c9;line-height:1.7}.warning{color:#ffca80}.error{color:#ff9999}.ok{color:#72e3b6}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid #30445c;padding:9px 7px;text-align:left}th{color:#b4c7db}td:last-child{text-align:right}.scroll{overflow-x:auto}.pill{display:inline-block;border:1px solid #496b84;border-radius:30px;padding:4px 10px;color:#b7d0e5;font-size:12px}.muted{color:#91a7bf}details summary{cursor:pointer;font-weight:700}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.status{min-height:24px;margin-top:8px}input[type=checkbox]{width:19px;height:19px;accent-color:#36bba3} @media(max-width:680px){.grid,.grid2{grid-template-columns:1fr}.card{padding:15px}body{padding:10px}}@media(max-width:680px){input,select{font-size:16px;min-height:46px}button{min-height:44px}.big{font-size:clamp(42px,11vw,64px)}.scroll{-webkit-overflow-scrolling:touch}body{padding-top:max(10px,env(safe-area-inset-top));padding-bottom:max(12px,env(safe-area-inset-bottom))}}
+</style></head><body><main>
+<h1>JTA100 <span style="color:#6fe1c5">専用ロット計算</span> <span class="pill">v2.1 / iPhone / 41銘柄</span></h1><p class="sub">XMTrading MT5 スタンダード・円口座｜銘柄・BUY/SELL・ENTRY・SLを入力して適正ロットを表示。注文は行いません。</p>
+<section class="card"><h2>ロット計算</h2><div class="grid">
+<div><label for="symbol">銘柄（JTA100 / XM）</label><select id="symbol"><option value="USDJPY">USDJPY</option>
+<option value="EURUSD">EURUSD</option>
+<option value="GBPUSD">GBPUSD</option>
+<option value="AUDUSD">AUDUSD</option>
+<option value="USDCAD">USDCAD</option>
+<option value="GBPJPY">GBPJPY</option>
+<option value="USDCHF">USDCHF</option>
+<option value="EURJPY">EURJPY</option>
+<option value="AUDJPY">AUDJPY</option>
+<option value="EURGBP">EURGBP</option>
+<option value="EURAUD">EURAUD</option>
+<option value="NZDJPY">NZDJPY</option>
+<option value="NZDUSD">NZDUSD</option>
+<option value="CADJPY">CADJPY</option>
+<option value="GBPAUD">GBPAUD</option>
+<option value="GBPCAD">GBPCAD</option>
+<option value="EURNZD">EURNZD</option>
+<option value="EURCAD">EURCAD</option>
+<option value="GBPNZD">GBPNZD</option>
+<option value="CADCHF">CADCHF</option>
+<option value="AUDCAD">AUDCAD</option>
+<option value="AUDNZD">AUDNZD</option>
+<option value="NZDCAD">NZDCAD</option>
+<option value="NZDCHF">NZDCHF</option>
+<option value="GBPCHF">GBPCHF</option>
+<option value="AUDCHF">AUDCHF</option>
+<option value="EURCHF">EURCHF</option>
+<option value="CHFJPY">CHFJPY</option>
+<option value="BTCUSD">BTCUSD</option>
+<option value="ETHUSD">ETHUSD</option>
+<option value="ADAUSD">ADAUSD</option>
+<option value="SOLUSD">SOLUSD</option>
+<option value="GOLD">GOLD</option>
+<option value="SILVER">SILVER</option>
+<option value="JP225Cash">JP225Cash</option>
+<option value="US100Cash">US100Cash</option>
+<option value="US30Cash">US30Cash</option>
+<option value="US500Cash">US500Cash</option>
+<option value="UK100Cash">UK100Cash</option>
+<option value="GER40">GER40 / GER40Cash</option>
+<option value="XTIUSD">XTIUSD / OILCash</option></select></div>
+<div><label for="side">売買方向</label><select id="side"><option value="BUY">BUY / 買い</option><option value="SELL">SELL / 売り</option></select></div>
+<div><label for="balance">計算基準資金（円）</label><input id="balance" type="number" min="1" step="1000" value="600000"></div>
+<div><label for="risk">許容リスク（%）</label><input id="risk" type="number" min="0.01" max="100" step="0.1" value="2"></div>
+<div><label for="entry">ENTRY価格</label><input id="entry" type="number" step="any" placeholder="例 0.87000"></div>
+<div><label for="sl">SL価格</label><input id="sl" type="number" step="any" placeholder="例 0.86500"></div>
+</div><div style="margin-top:15px" class="result"><div class="small">推奨ロット（損失許容額を超えないよう切り捨て）</div><div class="big" id="lots">—</div><div id="detail" class="small">条件を入力してください</div><div id="message" class="status small"></div></div><div class="actions"><button id="add" disabled>この計算を履歴に追加</button><button id="reset" class="secondary">ENTRY・SLをクリア</button></div></section>
+<section class="card"><details id="conversion"><summary>円換算レート（必要なときだけ確認・変更） <span id="fxbadge" class="pill"></span></summary><p class="small">円以外の損益通貨ではロット計算の内部で円換算が必要です。初期値は2026年10月22日のXM取得データからの参考値であり、現在レートではありません。自動更新しません。取引前に最新レートへ更新してください。円建て損益の銘柄は更新不要です。</p><div class="grid2"><div><label id="fxlabel" for="fxrate">1通貨あたり円</label><input id="fxrate" type="number" min="0.00000001" step="any"></div><div><label>XMの銘柄名 / 契約サイズ</label><div id="spec" style="padding:12px;background:#0b1b2d;border-radius:8px"></div></div></div><div class="actions"><button id="restore" class="secondary">取得時の参考レートに戻す</button></div></details></section>
+<section class="card"><div class="toolbar"><h2>計算履歴・保有チェック</h2><div><span id="activeCount" class="pill">保有 0件</span> <span id="activeRisk" class="pill">合計リスク 0.00%</span></div></div><p class="small">エントリーしたものだけ「保有」にチェック。合計リスクは各記録の想定SL損失額を、現在の基準資金で割った値です。決済後はチェックを外してください。計算履歴はこのブラウザ内に保存されます。</p><div class="scroll"><table><thead><tr><th>保有</th><th>日時</th><th>銘柄</th><th>方向</th><th>ENTRY</th><th>SL</th><th>lot</th><th>リスク率</th><th></th></tr></thead><tbody id="history"></tbody></table></div><div class="actions"><button id="clearHistory" class="danger">履歴を全削除</button></div></section>
+<p class="small">注意：計算は価格差 × 契約サイズ × 損益通貨の円換算レートを基礎とする概算です。XMの実際の約定損益とは、為替レート、価格刻み、手数料、スリッページ、銘柄固有の計算方式等で差が出ます。特に指数・商品・暗号資産CFDはXM側のポジションツールと少額テストで照合してください。未検証の銘柄は確認が必要です。41銘柄仕様のうち39銘柄はXM取得CSV、GER40・XTIUSDは別途確認されたXMの仕様を利用しています。</p>
+</main><script>
+const SPECS=[{"symbol":"USDJPY","broker":"USDJPY","contract":100000.0,"currency":"JPY","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"EURUSD","broker":"EURUSD","contract":100000.0,"currency":"USD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"GBPUSD","broker":"GBPUSD","contract":100000.0,"currency":"USD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"AUDUSD","broker":"AUDUSD","contract":100000.0,"currency":"USD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"USDCAD","broker":"USDCAD","contract":100000.0,"currency":"CAD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"GBPJPY","broker":"GBPJPY","contract":100000.0,"currency":"JPY","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"USDCHF","broker":"USDCHF","contract":100000.0,"currency":"CHF","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"EURJPY","broker":"EURJPY","contract":100000.0,"currency":"JPY","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"AUDJPY","broker":"AUDJPY","contract":100000.0,"currency":"JPY","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"EURGBP","broker":"EURGBP","contract":100000.0,"currency":"GBP","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"EURAUD","broker":"EURAUD","contract":100000.0,"currency":"AUD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"NZDJPY","broker":"NZDJPY","contract":100000.0,"currency":"JPY","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"NZDUSD","broker":"NZDUSD","contract":100000.0,"currency":"USD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"CADJPY","broker":"CADJPY","contract":100000.0,"currency":"JPY","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"GBPAUD","broker":"GBPAUD","contract":100000.0,"currency":"AUD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"GBPCAD","broker":"GBPCAD","contract":100000.0,"currency":"CAD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"EURNZD","broker":"EURNZD","contract":100000.0,"currency":"NZD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"EURCAD","broker":"EURCAD","contract":100000.0,"currency":"CAD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"GBPNZD","broker":"GBPNZD","contract":100000.0,"currency":"NZD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"CADCHF","broker":"CADCHF","contract":100000.0,"currency":"CHF","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"AUDCAD","broker":"AUDCAD","contract":100000.0,"currency":"CAD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"AUDNZD","broker":"AUDNZD","contract":100000.0,"currency":"NZD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"NZDCAD","broker":"NZDCAD","contract":100000.0,"currency":"CAD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"NZDCHF","broker":"NZDCHF","contract":100000.0,"currency":"CHF","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"GBPCHF","broker":"GBPCHF","contract":100000.0,"currency":"CHF","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"AUDCHF","broker":"AUDCHF","contract":100000.0,"currency":"CHF","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"EURCHF","broker":"EURCHF","contract":100000.0,"currency":"CHF","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"CHFJPY","broker":"CHFJPY","contract":100000.0,"currency":"JPY","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"BTCUSD","broker":"BTCUSD","contract":1.0,"currency":"USD","min":0.01,"step":0.01,"max":80.0,"verified":true},{"symbol":"ETHUSD","broker":"ETHUSD","contract":1.0,"currency":"USD","min":0.02,"step":0.01,"max":1180.0,"verified":true},{"symbol":"ADAUSD","broker":"ADAUSD","contract":1000.0,"currency":"USD","min":0.09,"step":0.01,"max":3000.0,"verified":true},{"symbol":"SOLUSD","broker":"SOLUSD","contract":10.0,"currency":"USD","min":0.05,"step":0.01,"max":3000.0,"verified":true},{"symbol":"GOLD","broker":"GOLD","contract":100.0,"currency":"USD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"SILVER","broker":"SILVER","contract":5000.0,"currency":"USD","min":0.01,"step":0.01,"max":50.0,"verified":true},{"symbol":"JP225Cash","broker":"JP225Cash","contract":1.0,"currency":"JPY","min":0.1,"step":0.1,"max":11940.0,"verified":true},{"symbol":"US100Cash","broker":"US100Cash","contract":1.0,"currency":"USD","min":0.1,"step":0.1,"max":240.0,"verified":true},{"symbol":"US30Cash","broker":"US30Cash","contract":1.0,"currency":"USD","min":0.1,"step":0.1,"max":180.0,"verified":true},{"symbol":"US500Cash","broker":"US500Cash","contract":1.0,"currency":"USD","min":0.1,"step":0.1,"max":870.0,"verified":true},{"symbol":"UK100Cash","broker":"UK100Cash","contract":1.0,"currency":"GBP","min":0.1,"step":0.1,"max":180.0,"verified":true},{"symbol":"GER40","broker":"GER40Cash","contract":1,"currency":"EUR","min":0.1,"step":0.1,"max":150,"verified":false},{"symbol":"XTIUSD","broker":"OILCash","contract":100,"currency":"USD","min":0.01,"step":0.01,"max":420,"verified":false}]; const INITIAL_RATES={"JPY":1,"USD":156.982,"GBP":210.451,"EUR":176.3002,"CAD":112.002,"CHF":191.431,"AUD":110.158,"NZD":89.32};
+const $=id=>document.getElementById(id), yen=x=>Math.round(x).toLocaleString('ja-JP'), n=x=>Number(x);
+const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const load=(k,d)=>{try{let v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}};
+let rates=load('jta100_v2_rates',INITIAL_RATES), history=load('jta100_v2_history',[]), calc=null;
+// 41 symbols are embedded directly in HTML for iPhone compatibility.
+$('balance').value=load('jta100_v2_balance',600000);$('risk').value=load('jta100_v2_risk',2);
+function spec(){return SPECS.find(s=>s.symbol===$('symbol').value)}
+function currentRate(){let s=spec();return s.currency==='JPY'?1:n(rates[s.currency]??INITIAL_RATES[s.currency])}
+function refreshSpec(){let s=spec();$('fxlabel').textContent='1 '+s.currency+' = 何円';$('fxrate').value=currentRate();$('fxrate').disabled=s.currency==='JPY';$('fxbadge').textContent=s.currency==='JPY'?'換算不要':s.currency+'→JPY（手動更新）';$('spec').textContent=s.broker+' / '+s.contract.toLocaleString()+' 単位 / 最小 '+s.min+' lot / 刻み '+s.step+' lot';calculate()}
+function calculate(){calc=null;$('add').disabled=true;let s=spec(),entry=n($('entry').value),sl=n($('sl').value),balance=n($('balance').value),risk=n($('risk').value),rate=currentRate();$('lots').textContent='—';$('detail').textContent='条件を入力してください';$('message').textContent='';$('message').className='status small';if(!$('entry').value||!$('sl').value)return;
+if(!(entry>0&&sl>0&&balance>0&&risk>0&&risk<=100&&rate>0)){showError('価格・資金・リスク率・換算レートを確認してください');return}
+let side=$('side').value;if((side==='BUY'&&sl>=entry)||(side==='SELL'&&sl<=entry)){showError('BUYはSLがENTRYより下、SELLはSLがENTRYより上である必要があります');return}
+let loss1=Math.abs(entry-sl)*s.contract*rate,limit=balance*risk/100;if(!(loss1>0)){showError('計算できません');return}
+let raw=limit/loss1;let steps=Math.floor((raw+1e-12)/s.step);let lots=Math.min(s.max,Math.floor((steps*s.step+1e-12)/s.step)*s.step);lots=Number(lots.toFixed(8));if(lots<s.min){$('lots').textContent='対象外';$('detail').textContent='最小ロット '+s.min+' でも許容リスクを超えます';return}
+let actual=lots*loss1;calc={symbol:s.symbol,side,entry,sl,lots,capital:balance,risk,actual,rate,currency:s.currency,time:new Date().toLocaleString('ja-JP'),held:false,id:Date.now()+'-'+Math.random().toString(36).slice(2,7)};
+$('lots').textContent=lots.toFixed(Math.max(2,decimalPlaces(s.step)))+' lot';$('detail').textContent='許容リスク '+yen(limit)+'円 / ロット刻み '+s.step+' / 最小 '+s.min;
+if(s.currency!=='JPY'){$('message').textContent='注意：'+s.currency+'→円の換算レートは自動更新されません。取引前に現在値へ変更してください。';$('message').classList.add('warning')}
+if(!s.verified){$('message').textContent+=' この銘柄の契約仕様はCSV未収録のため別途確認値を使用。XMで照合してください。';$('message').classList.add('warning')}
+$('add').disabled=false}
+function decimalPlaces(x){let str=String(x);return str.includes('.')?str.split('.')[1].length:0}
+function showError(x){$('message').textContent=x;$('message').classList.add('error')}
+function renderHistory(){let tbody=$('history');tbody.innerHTML='';let total=0,count=0;for(let h of history){if(h.held){count++;total+=h.actual}let tr=document.createElement('tr');let cb=document.createElement('input');cb.type='checkbox';cb.checked=!!h.held;cb.setAttribute('aria-label',h.symbol+' 保有');cb.onchange=()=>{h.held=cb.checked;store('jta100_v2_history',history);renderHistory()};let c=tr.insertCell();c.append(cb);for(let val of [h.time,h.symbol,h.side,h.entry,h.sl,h.lots.toFixed(2),h.risk+'%']){let td=tr.insertCell();td.textContent=val}let del=document.createElement('button');del.textContent='削除';del.className='secondary';del.style.padding='6px';del.onclick=()=>{history=history.filter(x=>x.id!==h.id);store('jta100_v2_history',history);renderHistory()};tr.insertCell().append(del);tbody.append(tr)}if(!history.length){let tr=tbody.insertRow();let c=tr.insertCell();c.colSpan=9;c.textContent='まだ計算履歴がありません';c.className='muted'}let base=n($('balance').value);$('activeCount').textContent='保有 '+count+'件';$('activeRisk').textContent='合計リスク '+(base>0?100*total/base:0).toFixed(2)+'%'}
+for(let id of ['side','entry','sl','balance','risk'])$(id).addEventListener('input',()=>{if(id==='balance')store('jta100_v2_balance',n($('balance').value));if(id==='risk')store('jta100_v2_risk',n($('risk').value));calculate();if(id==='balance')renderHistory()});
+$('symbol').onchange=refreshSpec;
+$('fxrate').oninput=()=>{let s=spec();if(s.currency!=='JPY'){rates[s.currency]=n($('fxrate').value);store('jta100_v2_rates',rates)}calculate()};
+$('restore').onclick=()=>{let s=spec();rates[s.currency]=INITIAL_RATES[s.currency];store('jta100_v2_rates',rates);refreshSpec()};
+$('add').onclick=()=>{if(!calc)return;history.unshift({...calc});store('jta100_v2_history',history);renderHistory();$('message').textContent='履歴に追加しました。実際にエントリーしたら「保有」にチェックしてください。';$('message').className='status small ok'};
+$('reset').onclick=()=>{$('entry').value='';$('sl').value='';calculate();$('entry').focus()};
+$('clearHistory').onclick=()=>{if(confirm('計算履歴をすべて削除しますか？')){history=[];store('jta100_v2_history',history);renderHistory()}};
+refreshSpec();renderHistory();
+if ("serviceWorker" in navigator && location.protocol === "https:") { window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{})); }
+</script></body></html>
